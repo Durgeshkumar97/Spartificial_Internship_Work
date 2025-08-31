@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# 🌌 Exoplanet Prediction App  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An **AI-powered tool** to detect exoplanets using **RNN sequence models** on stellar flux data.  
+Built during a **research internship at Spartificial Innovations Pvt. Ltd.**
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Abstract
+The project **"Hunting for Exoplanets using Sequence Models"** aimed to explore detection of exoplanets through advanced data analysis and machine learning.  
 
-### `npm start`
+By leveraging **stellar flux time series** (Kaggle dataset) and using **RNN/LSTM models**, we identified subtle light dimming patterns when planets transit across stars.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Key contributions:
+- Exploratory Data Analysis (EDA) with **Matplotlib, Seaborn, Plotly**  
+- Outlier detection and preprocessing  
+- Class imbalance handling with **Random Oversampling**  
+- Model implementation using **Keras (RNN/LSTM)**  
+- Achieved **80% accuracy on exoplanet stars** and **73% on non-exoplanet stars**  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📊 Introduction
+- **Exoplanets**: Planets outside our solar system, detected through changes in stellar brightness.  
+- **Sequence Models**: RNNs and LSTMs that capture temporal patterns in stellar flux data.  
+- **Challenge**: Detecting exoplanets from noisy, imbalanced datasets.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧪 Proposed Solution
+1. **Data Visualization**  
+   - Matplotlib → bar plots, pie charts  
+   - Plotly → interactive scatter/line/box plots  
+   - Seaborn → heatmaps for correlations  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Outlier Detection**  
+   - Box plots → identify and handle flux anomalies  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Class Imbalance Handling**  
+   - Random Oversampling → balance star systems with/without exoplanets  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Model Implementation**  
+   - LSTM initially, but shifted to **RNN** for efficiency and accuracy  
+   - Dataset split into **train/test**  
+   - Evaluation with accuracy, F1 score, and confusion matrix  
 
-### `npm run eject`
+5. **Results**  
+   - Confusion Matrix:  
+     ```
+     [[412, 153],
+      [  1,   4]]
+     ```
+   - **Exoplanet stars:** 80% accuracy  
+   - **Non-exoplanet stars:** 73% accuracy  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📈 Experimental Results
+- RNN with oversampling improved detection sensitivity.  
+- Outperformed earlier models applied on this dataset.  
+- Still room for improvement (accuracy < 100%).  
+- Future directions:  
+  - New datasets  
+  - Real-time streaming stellar flux  
+  - Advanced architectures (Transformers for time-series)  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠 Tech Stack
+- **Backend**: FastAPI, TensorFlow/Keras, NumPy, Pandas, Scikit-learn  
+- **Frontend**: React.js, Axios, Styled Components  
+- **Visualization**: Matplotlib, Seaborn, Plotly  
+- **Deployment Ready**: REST API + React frontend  
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📂 Project Structure
+``` my-react-app/
+│── backend/
+│   └── app/
+│       ├── api/
+│       ├── config/
+│       ├── models/
+│       │   └── weights/
+│       │       └── PLACE_MODEL_HERE.txt   <-- only this file on GitHub
+│       ├── utils/
+│       └── main.py
+│── frontend/
+│   └── src/
+│       ├── App.js
+│       ├── App.css
+│       └── components/
+│── requirements.txt
+│── package.json
+│── README.md
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributors
 
-### Code Splitting
+- Ahamika Pattnaik 
+- Durgesh Duklan
+- Sukant Neve 
+- Zainul Panjwani 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Mentor: Mr. Rohan Shah – Spartificial Innovations Pvt. Ltd.
