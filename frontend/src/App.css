@@ -1,0 +1,232 @@
+/* ---------- THEME ---------- */
+:root {
+  --primary-color: #007bff;
+  --hover-color: #0056b3;
+  --text-color: #fff;
+  --muted-text: rgba(255,255,255,.8);
+  --error-color: #ff5e5e;
+  --ok-color: #22c55e;
+
+  --bg-overlay: rgba(0,0,0,.45);
+  --glass-bg: rgba(255,255,255,.06);
+  --glass-border: rgba(255,255,255,.18);
+  --focus: 0 0 0 3px rgba(0,123,255,.45);
+
+  --spacing-2xs: .5rem;
+  --spacing-xs: .75rem;
+  --spacing-small: 1rem;
+  --spacing-medium: 2rem;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --transition: 200ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* ---------- BASE ---------- */
+@media (prefers-color-scheme: dark) {
+  :root { --bg-overlay: rgba(0,0,0,.5); }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-color);
+  background-image: url('../public/assets/ai-generated-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* readability overlay on top of busy background */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.55), var(--bg-overlay));
+  pointer-events: none;
+}
+
+/* ---------- LAYOUT ---------- */
+.container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 3rem);
+  text-align: center;
+}
+
+/* glass card to hold content */
+/* Glass card for content */
+.card {
+  width: min(960px, 100%);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: clamp(1.25rem, 2vw, 2rem);
+  margin: 0 auto;
+}
+
+/* Optional overlay for readability */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.45));
+  pointer-events:none;
+}
+
+
+/* ---------- TYPOGRAPHY ---------- */
+.title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin: 0 0 var(--spacing-small);
+  text-shadow: 0 0 12px rgba(0,0,0,.35);
+}
+.subtitle { 
+  color: var(--muted-text);
+  margin: 0 0 var(--spacing-medium);
+  line-height: 1.5;
+}
+
+/* ---------- FORM ---------- */
+.form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--spacing-small);
+}
+
+/* nice dropzone (optional): add class="dropzone" to the wrapper */
+.dropzone {
+  border: 2px dashed rgba(255,255,255,.25);
+  border-radius: 20px;
+  padding: var(--spacing-medium);
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
+  background: rgba(255,255,255,.03);
+}
+.dropzone.dragover {
+  border-color: var(--primary-color);
+  background: rgba(0,123,255,.08);
+  transform: translateY(-2px);
+}
+
+/* file button */
+input[type="file"]::file-selector-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: .5rem .9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: background-color var(--transition), transform var(--transition);
+}
+input[type="file"]::file-selector-button:hover { background-color: var(--hover-color); transform: translateY(-1px); }
+input[type="file"]::file-selector-button:active { transform: translateY(0); }
+
+/* buttons */
+.submit-btn,
+.download-link {
+  padding: .6rem 1.1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 10px;
+  transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 6px 14px rgba(0,123,255,.25);
+}
+.submit-btn:hover,
+.download-link:hover { background-color: var(--hover-color); transform: translateY(-1px); }
+.submit-btn:active,
+.download-link:active { transform: translateY(0); }
+.submit-btn:disabled { background-color: #7e7e7e; cursor: not-allowed; box-shadow: none; }
+
+/* a11y focus */
+.submit-btn:focus-visible,
+.download-link:focus-visible,
+input[type="file"]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* ---------- FEEDBACK ---------- */
+.error {
+  color: var(--error-color);
+  margin-top: var(--spacing-small);
+  font-weight: 600;
+}
+
+/* progress */
+.progress {
+  width: 100%;
+  max-width: 420px;
+  height: 22px;
+  background-color: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  margin: var(--spacing-small) auto 0;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), #3aa0ff);
+  text-align: center;
+  line-height: 22px;
+  color: #fff;
+  font-weight: 700;
+  width: 0;
+  transition: width 300ms ease;
+}
+.progress-bar::after { /* subtle sheen */
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient( to right, transparent, rgba(255,255,255,.18), transparent );
+  transform: translateX(-100%);
+  animation: sheen 2.2s infinite;
+  pointer-events: none;
+}
+
+/* reduce animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar, .dropzone { transition: none; }
+  .progress-bar::after { animation: none; }
+}
+
+/* ---------- DOWNLOAD ---------- */
+.download-section { margin-top: var(--spacing-medium); }
+.download-title { font-size: 1.5rem; margin-bottom: var(--spacing-small); }
+
+/* ---------- TEAM ---------- */
+.team-section { margin-top: var(--spacing-medium); }
+.team-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 1.25rem 2rem; margin-top: 1rem;
+}
+.team-member { padding: .5rem .75rem; border-radius: 10px; background: rgba(255,255,255,.04); }
+.team-member p { margin: .4rem 0 .2rem; font-weight: 700; }
+.team-member a { color: var(--text-color); font-size: .95rem; text-decoration: underline; }
+.team-member a:hover { color: #61dafb; transform: translateY(-1px); transition: var(--transition); }
+
+/* ---------- FOOTER ---------- */
+footer { text-align: center; margin-top: var(--spacing-medium); font-size: .9rem; opacity: .8; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 720px) {
+  .form { flex-direction: column; gap: .75rem; }
+  .progress { height: 26px; }
+  .progress-bar { line-height: 26px; }
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes sheen {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
